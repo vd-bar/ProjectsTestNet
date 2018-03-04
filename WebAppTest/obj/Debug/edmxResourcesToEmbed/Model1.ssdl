@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="DetailsSet" EntityType="Model1.Store.DetailsSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StoreKeeperSet" EntityType="Model1.Store.StoreKeeperSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="DetailsStoreKeeper" Association="Model1.Store.DetailsStoreKeeper">
+      <End Role="Details" EntitySet="DetailsSet" />
+      <End Role="StoreKeeper" EntitySet="StoreKeeperSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DetailsSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CodeDetail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NameDetails" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Quntity" Type="int" Nullable="true" />
+    <Property Name="StoreKeeperID" Type="int" Nullable="false" />
+    <Property Name="DateAdd" Type="datetime" Nullable="false" />
+    <Property Name="DateDelete" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StoreKeeperSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstLastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Details_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="DetailsStoreKeeper">
+    <End Role="Details" Type="Model1.Store.DetailsSet" Multiplicity="1" />
+    <End Role="StoreKeeper" Type="Model1.Store.StoreKeeperSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Details">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoreKeeper">
+        <PropertyRef Name="Details_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

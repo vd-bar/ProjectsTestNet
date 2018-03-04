@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DetailsSet" EntityType="Model1.Details" />
+    <EntitySet Name="StoreKeeperSet" EntityType="Model1.StoreKeeper" />
+    <AssociationSet Name="DetailsStoreKeeper" Association="Model1.DetailsStoreKeeper">
+      <End Role="Details" EntitySet="DetailsSet" />
+      <End Role="StoreKeeper" EntitySet="StoreKeeperSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Details">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CodeDetail" Type="String" Nullable="false" />
+    <Property Name="NameDetails" Type="String" Nullable="false" />
+    <Property Name="Quntity" Type="Int32" Nullable="true" />
+    <Property Name="StoreKeeperID" Type="Int32" Nullable="false" />
+    <Property Name="DateAdd" Type="DateTime" Nullable="false" />
+    <Property Name="DateDelete" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="StoreKeeper" Relationship="Model1.DetailsStoreKeeper" FromRole="Details" ToRole="StoreKeeper" />
+  </EntityType>
+  <EntityType Name="StoreKeeper">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstLastName" Type="String" Nullable="false" />
+    <NavigationProperty Name="Details" Relationship="Model1.DetailsStoreKeeper" FromRole="StoreKeeper" ToRole="Details" />
+  </EntityType>
+  <Association Name="DetailsStoreKeeper">
+    <End Type="Model1.Details" Role="Details" Multiplicity="1" />
+    <End Type="Model1.StoreKeeper" Role="StoreKeeper" Multiplicity="*" />
+  </Association>
+</Schema>

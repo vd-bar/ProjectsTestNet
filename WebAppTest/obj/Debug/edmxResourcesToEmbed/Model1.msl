@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="DetailsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Details)">
+        <MappingFragment StoreEntitySet="DetailsSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CodeDetail" ColumnName="CodeDetail" />
+          <ScalarProperty Name="NameDetails" ColumnName="NameDetails" />
+          <ScalarProperty Name="Quntity" ColumnName="Quntity" />
+          <ScalarProperty Name="StoreKeeperID" ColumnName="StoreKeeperID" />
+          <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+          <ScalarProperty Name="DateDelete" ColumnName="DateDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoreKeeperSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.StoreKeeper)">
+        <MappingFragment StoreEntitySet="StoreKeeperSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstLastName" ColumnName="FirstLastName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="DetailsStoreKeeper" TypeName="Model1.DetailsStoreKeeper" StoreEntitySet="StoreKeeperSet">
+      <EndProperty Name="Details">
+        <ScalarProperty Name="Id" ColumnName="Details_Id" />
+      </EndProperty>
+      <EndProperty Name="StoreKeeper">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
