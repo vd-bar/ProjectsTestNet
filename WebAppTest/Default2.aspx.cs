@@ -36,7 +36,7 @@ namespace WebAppTest
                             int sumDetails = 0;
                             foreach (var itemDetails in deteils)
                             {
-                                if (itemDetails.Id == itemKeeper.Id && itemDetails.DateDelete == null)
+                                if (itemDetails.StoreKeeper == itemKeeper.Id && itemDetails.DateDelete == null)
                                     sumDetails += Convert.ToInt32(itemDetails.Quantity);
                             }
                             DropDownList1.Items.Add(itemKeeper.LastFierstName);
